@@ -2,7 +2,7 @@
   "name": "vscode-nupkg",
   "displayName": "Nuget NuPkg viewer",
   "description": "Display all information from a NuPkg file",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "eridem",
   "engines": {
     "vscode": "^1.5.0"
