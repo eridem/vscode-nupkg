@@ -2,18 +2,34 @@
   "name": "vscode-nupkg",
   "displayName": "Nuget NuPkg viewer",
   "description": "Display all information from a NuPkg file",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "eridem",
+  "author": {
+    "name": "Miguel Ángel Domínguez Coloma",
+    "email": "m@eridem.net",
+    "url": "http://eridem.net"
+  },
+  "contributors": [],
+  "license": "MIT",
+  "homepage": "http://eridem.net",
+  "icon": "icon.svg",
   "engines": {
     "vscode": "^1.5.0"
   },
   "categories": [
     "Other"
   ],
+  "bugs": {
+    "url": "https://github.com/eridem/vscode-nupkg/issues",
+    "email": "m@eridem.net"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:eridem/vscode-nupkg.git"
+  },
   "activationEvents": [
     "onCommand:extension.preview"
   ],
-  "icon": "icon.svg",
   "main": "./out/src/extension",
   "contributes": {
     "languages": [
