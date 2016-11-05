@@ -2,9 +2,9 @@
 
 View the contents of your `*.nupkg` files directly from VSCode.
 
-- It prints information about the package ande dependencies.
+- It prints information about the package and dependencies.
 - It prints information about the contents of the file.
-- It creates a temporal YAML file for easy visualitation. 
+- It creates a temporal YAML file for easy visualization. 
 
 ![Access from menus](https://raw.githubusercontent.com/eridem/vscode-nupkg/master/images/example-menus.png)
 
@@ -15,6 +15,14 @@ View the contents of your `*.nupkg` files directly from VSCode.
 <https://github.com/eridem/vscode-nupkg/issues>
 
 # Release Notes
+
+### 0.0.3
+
+- Bugfix: grammar in README.
+
+### 0.0.2
+
+- Improvement: change icon.
 
 ### 0.0.1
 
