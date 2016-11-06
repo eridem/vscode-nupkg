@@ -4,7 +4,13 @@
   "description": "Display all information from a NuPkg file",
   "version": "0.0.4",
   "publisher": "eridem",
-  "keywords": [ "nuget", "nupkg", "viewer", "manifest", "dependencies", "unzip" ],
+  "keywords": [
+    "nuget",
+    "nupkg",
+    "viewer",
+    "manifest",
+    "unzip"
+  ],
   "author": {
     "name": "Miguel Ángel Domínguez Coloma",
     "email": "m@eridem.net",
@@ -29,13 +35,13 @@
     "type": "git",
     "url": "https://github.com/eridem/vscode-nupkg"
   },
-	"badges": [
-		{
-			"url": "https://david-dm.org/eridem/vscode-nupkg/dev-status.svg",
-			"href": "https://david-dm.org/eridem/vscode-nupkg",
-			"description": "Dependency Status"
-		}
-	],
+  "badges": [
+    {
+      "url": "https://david-dm.org/eridem/vscode-nupkg/dev-status.svg",
+      "href": "https://david-dm.org/eridem/vscode-nupkg",
+      "description": "Dependency Status"
+    }
+  ],
   "activationEvents": [
     "onCommand:extension.preview"
   ],
@@ -91,7 +97,7 @@
   "devDependencies": {
     "typescript": "^2.0.3",
     "vscode": "^1.0.0",
-    "@types/node": "^6.0.40",
+    "@types/node": "^6.0.40"
   },
   "dependencies": {
     "adm-zip": "^0.4.7",
