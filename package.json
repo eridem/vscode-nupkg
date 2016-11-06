@@ -19,7 +19,7 @@
   "markdown": "github",
   "contributors": [],
   "license": "SEE LICENSE IN LICENSE.md",
-  "homepage": "eridem.net/nuget-nupkg-viewer-visual-studio-code-extension/",
+  "homepage": "http://eridem.net/nuget-nupkg-viewer-visual-studio-code-extension/",
   "icon": "icon.svg",
   "engines": {
     "vscode": "^1.5.0"
