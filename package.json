@@ -1,17 +1,19 @@
 {
   "name": "vscode-nupkg",
-  "displayName": "Nuget NuPkg viewer",
+  "displayName": "NuGet NuPkg Viewer",
   "description": "Display all information from a NuPkg file",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "publisher": "eridem",
+  "keywords": [ "nuget", "nupkg", "viewer", "manifest", "dependencies", "unzip" ],
   "author": {
     "name": "Miguel Ángel Domínguez Coloma",
     "email": "m@eridem.net",
     "url": "http://eridem.net"
   },
+  "markdown": "github",
   "contributors": [],
-  "license": "MIT",
-  "homepage": "http://eridem.net",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "homepage": "eridem.net/nuget-nupkg-viewer-visual-studio-code-extension/",
   "icon": "icon.svg",
   "engines": {
     "vscode": "^1.5.0"
@@ -25,8 +27,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:eridem/vscode-nupkg.git"
+    "url": "https://github.com/eridem/vscode-nupkg"
   },
+	"badges": [
+		{
+			"url": "https://david-dm.org/eridem/vscode-nupkg/dev-status.svg",
+			"href": "https://david-dm.org/eridem/vscode-nupkg",
+			"description": "Dependency Status"
+		}
+	],
   "activationEvents": [
     "onCommand:extension.preview"
   ],
@@ -82,9 +91,7 @@
   "devDependencies": {
     "typescript": "^2.0.3",
     "vscode": "^1.0.0",
-    "mocha": "^2.3.3",
     "@types/node": "^6.0.40",
-    "@types/mocha": "^2.2.32"
   },
   "dependencies": {
     "adm-zip": "^0.4.7",

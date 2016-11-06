@@ -1,3 +1,7 @@
+### 0.0.4
+
+- Improvement: search tags on Marketplace, homepage, ...
+
 ### 0.0.3
 
 - Bugfix: grammar in README.

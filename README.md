@@ -16,6 +16,10 @@ View the contents of your `*.nupkg` files directly from VSCode.
 
 # Release Notes
 
+### 0.0.4
+
+- Improvement: search tags on Marketplace, homepage, ...
+
 ### 0.0.3
 
 - Bugfix: grammar in README.
@@ -35,4 +39,4 @@ View the contents of your `*.nupkg` files directly from VSCode.
 
 Copyright (c) 2016 [Miguel Ángel Domínguez Coloma](http://eridem.net)
 
-Licensed under [the MIT License](./LICENSE).
+Licensed under [the MIT License](./LICENSE.md).
