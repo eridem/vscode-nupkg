@@ -6,6 +6,7 @@ function createNuGetAsText(nugetSpec: any): any {
         let metadata = nugetSpec.package.metadata[0] || [];
         let metadataKeys = Object.keys(metadata).filter(m => m !== 'dependencies') || [];
         let dependencies = metadata.dependencies && metadata.dependencies[0] && metadata.dependencies[0].group ? metadata.dependencies[0].group : [];
+        let references = metadata.references && metadata.references[0] && metadata.references[0].reference ? metadata.references[0].reference : []
         let dependencyKeys = Object.keys(dependencies) || [];
         let frameworkAssemblies = metadata.frameworkAssemblies && metadata.frameworkAssemblies[0] && metadata.frameworkAssemblies[0].frameworkAssembly ? metadata.frameworkAssemblies[0].frameworkAssembly : [];
         let frameworkAssembliesKeys = Object.keys(frameworkAssemblies) || [];
@@ -13,6 +14,11 @@ function createNuGetAsText(nugetSpec: any): any {
         // Metadata
         if (metadataKeys.length) r['Metadata'] = {};
         metadataKeys.forEach(k => r['Metadata'][k] = metadata[k].toString())
+
+        // References
+        if (references.length) {
+            r['References'] = references.map(r => r.$)
+        }
 
         // Dependencies
         if (dependencyKeys.length) r['Dependencies'] = {};
