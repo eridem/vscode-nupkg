@@ -18,8 +18,9 @@ function createNuGetAsText(nugetSpec: any): any {
         if (dependencyKeys.length) r['Dependencies'] = {};
         dependencyKeys.forEach(k => {
             let framework = dependencies[k];
-            r['Dependencies'][framework.$.targetFramework] = {};
-            let dependency = r['Dependencies'][framework.$.targetFramework]
+            let frameworkName = framework.$ && framework.$.targetFramework ? framework.$.targetFramework : 'All Frameworks'
+            r['Dependencies'][frameworkName] = {}
+            let dependency = r['Dependencies'][frameworkName]
 
             if (framework.dependency) {
                 framework.dependency.forEach(d => dependency[d.$.id] = d.$.version)
