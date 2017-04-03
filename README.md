@@ -16,6 +16,11 @@ View the contents of your `*.nupkg` files directly from VSCode.
 
 # Release Notes
 
+### 0.0.5
+
+- Bugfix: show 'All Frameworks' raised exception.
+- Bugfix: show 'References' section
+
 ### 0.0.4
 
 - Improvement: search tags on Marketplace, homepage, ...
