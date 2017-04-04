@@ -1,3 +1,9 @@
+### 0.0.6
+
+- Bugfix: fix bug showing dependencies without group.
+- Bugfix: fix bug repeating sections in Metadata
+- Improvement: sort files alphabetically
+
 ### 0.0.5
 
 - Bugfix: show 'All Frameworks' raised exception.

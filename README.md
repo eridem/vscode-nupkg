@@ -14,7 +14,13 @@ View the contents of your `*.nupkg` files directly from VSCode.
 
 <https://github.com/eridem/vscode-nupkg/issues>
 
-# Release Notes
+# Changelog
+
+### 0.0.6
+
+- Bugfix: fix bug showing dependencies without group.
+- Bugfix: fix bug repeating sections in Metadata
+- Improvement: sort files alphabetically
 
 ### 0.0.5
 
