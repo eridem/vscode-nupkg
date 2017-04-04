@@ -6,6 +6,10 @@ function getDependenciesByFramework(metadata) {
     return metadata.dependencies && metadata.dependencies[0] && metadata.dependencies[0].group ? metadata.dependencies[0].group : [];
 }
 
+function skipInMetadata(section) {
+    return section !== 'dependencies' && section !== 'references' && section !== 'frameworkAssemblies'
+}
+
 function createNuGetAsText(nugetSpec: any): any {
     // r is Result object
     let r = {}
@@ -22,7 +26,7 @@ function createNuGetAsText(nugetSpec: any): any {
 
         // Metadata
         if (metadataKeys.length) r['Metadata'] = {};
-        metadataKeys.forEach(k => r['Metadata'][k] = metadata[k].toString())
+        metadataKeys.filter(skipInMetadata).forEach(k => r['Metadata'][k] = metadata[k].toString())
 
         // References
         if (references.length) {
