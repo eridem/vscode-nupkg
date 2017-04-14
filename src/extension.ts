@@ -1,5 +1,3 @@
-'use strict';
-
 import * as vscode from 'vscode';
 import * as zipUtils from './zip-utils';
 import * as nupkgUtils from './nupkg-utils';

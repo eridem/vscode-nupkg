@@ -1,3 +1,7 @@
+### 0.0.7
+
+- Improvement: show version symbols '<=', '<', '>=' and '>'
+
 ### 0.0.6
 
 - Bugfix: fix bug showing dependencies without group.
