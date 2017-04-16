@@ -1,6 +1,8 @@
+import * as filenameParser from './filename-parser';
+
 function createFileTreeAsText(entries) {
     let result = 'Contents:\n';
-    entries.forEach(e => result += '  - ' + (e.isDirectory ? 'Folder: ' : 'File:   ') + ' ' + e.entryName + '\n');
+    entries.forEach(e => result += '  - ' + (e.isDirectory ? 'Folder: ' : 'File:   ') + ' ' + filenameParser.parse(e.entryName) + '\n');
     return result;
 }
 

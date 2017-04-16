@@ -3,7 +3,7 @@ function createVersion(symbol: string, number: string): string {
     return `${symbol} ${number}`
 }
 
-export function parseDependencyVersion (version: string): string {
+export function parse (version: string): string {
     console.log('Version to parse: ', version)
     if (!version) return ''
 
@@ -23,4 +23,4 @@ export function parseDependencyVersion (version: string): string {
     }
 }
 
-module.exports = { parseDependencyVersion }
+module.exports = { parse }

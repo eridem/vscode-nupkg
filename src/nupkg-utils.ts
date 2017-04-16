@@ -1,4 +1,5 @@
 import * as versionParser from './version-parser';
+import * as profileParser from './profile-parser';
 
 function getDependenciesWithoutFramework(metadata) {
     return metadata.dependencies && metadata.dependencies[0] && metadata.dependencies[0].dependency ? metadata.dependencies[0].dependency : [];
@@ -39,21 +40,21 @@ function createNuGetAsText(nugetSpec: any): any {
         if (dependencyByFrameworkKeys.length) r['Dependencies'] = r['Dependencies'] || {};
         dependencyByFrameworkKeys.forEach(k => {
             let framework = dependenciesByFramework[k];
-            let frameworkName = framework.$ && framework.$.targetFramework ? framework.$.targetFramework : 'All Frameworks'
+            let frameworkName = profileParser.parse(framework.$ && framework.$.targetFramework ? framework.$.targetFramework : 'All Frameworks')
             r['Dependencies'][frameworkName] = {}
             let dependency = r['Dependencies'][frameworkName]
 
             if (framework.dependency) {
-                framework.dependency.forEach(d => dependency[d.$.id] = versionParser.parseDependencyVersion(d.$.version))
+                framework.dependency.forEach(d => dependency[d.$.id] = versionParser.parse(d.$.version))
             } else {
-                dependency = `No dependencies.`
+                r['Dependencies'][frameworkName] = `No dependencies.`
             }
         })
 
         // Dependencies without Framework
         if (dependenciesWithoutFramework.length) r['Dependencies'] = r['Dependencies'] || {};
         dependenciesWithoutFramework.forEach(k => {
-            r['Dependencies'][k.$.id] = versionParser.parseDependencyVersion(k.$.version)
+            r['Dependencies'][k.$.id] = versionParser.parse(k.$.version)
         })
 
         // frameworkAssemblies

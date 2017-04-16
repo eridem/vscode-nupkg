@@ -23,6 +23,7 @@ export function activate(context: vscode.ExtensionContext) {
         ]).then((texts) => {
             let text = '';
             texts.forEach((t) => text += t + '\n');
+            text = text.replace(/'(Portable Class Library\s+\([^\)]+\))\s*'/gi, '$1')
             createFileAndShowIt(fileUri, text);
         })
     });

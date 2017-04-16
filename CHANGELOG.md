@@ -1,12 +1,17 @@
+### 0.0.8
+
+- Improvement: Add profile names
+- Bugfix: fix encoding on file names
+
 ### 0.0.7
 
 - Improvement: show version symbols '<=', '<', '>=' and '>'
 
 ### 0.0.6
 
+- Improvement: sort files alphabetically
 - Bugfix: fix bug showing dependencies without group.
 - Bugfix: fix bug repeating sections in Metadata
-- Improvement: sort files alphabetically
 
 ### 0.0.5
 
