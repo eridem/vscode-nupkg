@@ -13,6 +13,18 @@ function skipInMetadata(section) {
     return section !== 'dependencies' && section !== 'references' && section !== 'frameworkAssemblies'
 }
 
+function plainObject(obj: any) {
+    if (obj instanceof Array && obj.length == 1 && typeof obj[0] == 'object') {
+        let keys = Object.keys(obj[0])
+        if (keys.length > 0 && keys[0] == '$') {
+            return obj[0].$
+        }
+        return obj[0]
+    }
+    
+    return obj.toString()
+}
+
 function createNuGetAsText(nugetSpec: any): any {
     // r is Result object
     let r = {}
@@ -29,7 +41,7 @@ function createNuGetAsText(nugetSpec: any): any {
 
         // Metadata
         if (metadataKeys.length) r['Metadata'] = {};
-        metadataKeys.filter(skipInMetadata).forEach(k => r['Metadata'][k] = metadata[k].toString())
+        metadataKeys.filter(skipInMetadata).forEach(k => r['Metadata'][k] = plainObject(metadata[k]))
 
         // References
         if (references.length) {

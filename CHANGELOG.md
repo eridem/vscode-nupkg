@@ -1,22 +1,26 @@
+### 1.0.0
+
+- Improvement: support for repositories ([#10](https://github.com/eridem/vscode-nupkg/issues/10)).
+
 ### 0.0.8
 
-- Improvement: Add profile names
-- Bugfix: fix encoding on file names
+- Improvement: Add profile names.
+- Bugfix: fix encoding on file names.
 
 ### 0.0.7
 
-- Improvement: show version symbols '<=', '<', '>=' and '>'
+- Improvement: show version symbols '<=', '<', '>=' and '>'.
 
 ### 0.0.6
 
-- Improvement: sort files alphabetically
+- Improvement: sort files alphabetically.
 - Bugfix: fix bug showing dependencies without group.
-- Bugfix: fix bug repeating sections in Metadata
+- Bugfix: fix bug repeating sections in Metadata.
 
 ### 0.0.5
 
 - Bugfix: show 'All Frameworks' raised exception.
-- Bugfix: show 'References' section
+- Bugfix: show 'References' section.
 
 ### 0.0.4
 
