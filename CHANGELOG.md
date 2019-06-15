@@ -1,3 +1,7 @@
+### 1.0.1
+
+- Bugfix: fix Homepage url
+
 ### 1.0.0
 
 - Improvement: support for repositories ([#10](https://github.com/eridem/vscode-nupkg/issues/10)).

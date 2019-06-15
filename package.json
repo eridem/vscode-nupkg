@@ -2,7 +2,7 @@
   "name": "vscode-nupkg",
   "displayName": "NuGet NuPkg Viewer",
   "description": "Display all information from a NuPkg file",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "eridem",
   "keywords": [
     "nuget",
@@ -14,12 +14,12 @@
   "author": {
     "name": "Miguel Ángel Domínguez Coloma",
     "email": "m@eridem.net",
-    "url": "http://eridem.net"
+    "url": "https://eridem.net"
   },
   "markdown": "github",
   "contributors": [],
   "license": "SEE LICENSE IN LICENSE.md",
-  "homepage": "http://eridem.net/nuget-nupkg-viewer-visual-studio-code-extension/",
+  "homepage": "https://eridem.net/nuget-nupkg-viewer-visual-studio-code-extension",
   "icon": "images/icon.png",
   "engines": {
     "vscode": "^1.5.0"
@@ -92,7 +92,8 @@
   "scripts": {
     "vscode:prepublish": "tsc -p ./",
     "compile": "tsc -watch -p ./",
-    "postinstall": "node ./node_modules/vscode/bin/install"
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "package": "vsce package"
   },
   "devDependencies": {
     "@types/node": "^12.0.2",
