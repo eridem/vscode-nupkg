@@ -13,13 +13,12 @@
   ],
   "author": {
     "name": "Miguel Ángel Domínguez Coloma",
-    "email": "m@eridem.net",
-    "url": "https://eridem.net"
+    "url": "https://eridem.com"
   },
   "markdown": "github",
   "contributors": [],
   "license": "SEE LICENSE IN LICENSE.md",
-  "homepage": "https://eridem.net/nuget-nupkg-viewer-visual-studio-code-extension",
+  "homepage": "https://eridem.com/vscode-extensions/vscode-nupkg",
   "icon": "images/icon.png",
   "engines": {
     "vscode": "^1.85.0"
@@ -117,7 +116,7 @@
     "watch:tsc": "tsc --noEmit --watch -p ./",
     "check-types": "tsc --noEmit -p ./",
     "lint": "eslint src",
-    "test": "node --import tsx --test \"src/test/*.test.ts\"",
+    "test": "node --import tsx --test src/test/*.test.ts",
     "package": "vsce package"
   },
   "devDependencies": {
