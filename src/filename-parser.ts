@@ -3,5 +3,3 @@ export function parse (filename: string): string {
 
     return decodeURIComponent(filename)
 }
-
-module.exports = { parse }

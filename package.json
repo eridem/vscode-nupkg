@@ -2,7 +2,7 @@
   "name": "vscode-nupkg",
   "displayName": "NuGet NuPkg Viewer",
   "description": "Display all information from a NuPkg file",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "publisher": "eridem",
   "keywords": [
     "nuget",
@@ -22,7 +22,7 @@
   "homepage": "https://eridem.net/nuget-nupkg-viewer-visual-studio-code-extension",
   "icon": "images/icon.png",
   "engines": {
-    "vscode": "^1.5.0"
+    "vscode": "^1.85.0"
   },
   "categories": [
     "Other"
@@ -35,17 +35,7 @@
     "type": "git",
     "url": "https://github.com/eridem/vscode-nupkg"
   },
-  "badges": [
-    {
-      "url": "https://david-dm.org/eridem/vscode-nupkg/dev-status.svg",
-      "href": "https://david-dm.org/eridem/vscode-nupkg",
-      "description": "Dependency Status"
-    }
-  ],
-  "activationEvents": [
-    "onCommand:extension.preview"
-  ],
-  "main": "./out/src/extension",
+  "main": "./dist/extension.js",
   "contributes": {
     "languages": [
       {
@@ -59,6 +49,36 @@
         ]
       }
     ],
+    "customEditors": [
+      {
+        "viewType": "nupkg.preview",
+        "displayName": "NuPkg Preview",
+        "selector": [
+          {
+            "filenamePattern": "*.nupkg"
+          }
+        ],
+        "priority": "default"
+      }
+    ],
+    "configuration": {
+      "title": "NuGet NuPkg Viewer",
+      "properties": {
+        "nupkg.preview.defaultMode": {
+          "type": "string",
+          "enum": [
+            "modern",
+            "yaml"
+          ],
+          "enumDescriptions": [
+            "Rendered HTML preview of the package.",
+            "Raw YAML text (legacy view)."
+          ],
+          "default": "modern",
+          "description": "Which view the NuPkg preview opens in by default."
+        }
+      }
+    },
     "commands": [
       {
         "command": "extension.preview",
@@ -90,20 +110,34 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "tsc -p ./",
-    "compile": "tsc -watch -p ./",
-    "postinstall": "node ./node_modules/vscode/bin/install",
+    "vscode:prepublish": "npm run check-types && node esbuild.js --production",
+    "compile": "npm run check-types && npm run lint && node esbuild.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch -p ./",
+    "check-types": "tsc --noEmit -p ./",
+    "lint": "eslint src",
+    "test": "node --import tsx --test \"src/test/*.test.ts\"",
     "package": "vsce package"
   },
   "devDependencies": {
-    "@types/node": "^12.0.2",
-    "typescript": "^3.4.5",
-    "vscode": "^1.1.34"
+    "@types/adm-zip": "^0.5.5",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "@vscode/vsce": "^3.9.2",
+    "esbuild": "^0.25.0",
+    "eslint": "^9.0.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^3.3.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.0"
   },
   "dependencies": {
-    "adm-zip": "^0.4.13",
-    "js-yaml": "^3.13.1",
-    "shelljs": "^0.8.3",
+    "adm-zip": "^0.5.16",
+    "js-yaml": "^4.1.0",
     "smart-nupkg-metadata-reader": "^1.0.0"
   }
 }

@@ -1,15 +1,15 @@
 import * as versionParser from './version-parser';
 import * as profileParser from './profile-parser';
 
-function getDependenciesWithoutFramework(metadata) {
+function getDependenciesWithoutFramework(metadata: any) {
     return metadata.dependencies && metadata.dependencies[0] && metadata.dependencies[0].dependency ? metadata.dependencies[0].dependency : [];
 }
 
-function getDependenciesByFramework(metadata) {
+function getDependenciesByFramework(metadata: any) {
     return metadata.dependencies && metadata.dependencies[0] && metadata.dependencies[0].group ? metadata.dependencies[0].group : [];
 }
 
-function skipInMetadata(section) {
+function skipInMetadata(section: string) {
     return section !== 'dependencies' && section !== 'references' && section !== 'frameworkAssemblies'
 }
 
@@ -21,13 +21,13 @@ function plainObject(obj: any) {
         }
         return obj[0]
     }
-    
+
     return obj.toString()
 }
 
-function createNuGetAsText(nugetSpec: any): any {
+export function createNuGetAsText(nugetSpec: any): any {
     // r is Result object
-    let r = {}
+    let r: Record<string, any> = {}
 
     if (nugetSpec.package && nugetSpec.package.metadata && nugetSpec.package.metadata[0]) {
         let metadata = nugetSpec.package.metadata[0] || [];
@@ -45,7 +45,7 @@ function createNuGetAsText(nugetSpec: any): any {
 
         // References
         if (references.length) {
-            r['References'] = references.map(r => r.$)
+            r['References'] = references.map((r: any) => r.$)
         }
 
         // Dependencies by Framework
@@ -57,7 +57,7 @@ function createNuGetAsText(nugetSpec: any): any {
             let dependency = r['Dependencies'][frameworkName]
 
             if (framework.dependency) {
-                framework.dependency.forEach(d => dependency[d.$.id] = versionParser.parse(d.$.version))
+                framework.dependency.forEach((d: any) => dependency[d.$.id] = versionParser.parse(d.$.version))
             } else {
                 r['Dependencies'][frameworkName] = `No dependencies.`
             }
@@ -65,7 +65,7 @@ function createNuGetAsText(nugetSpec: any): any {
 
         // Dependencies without Framework
         if (dependenciesWithoutFramework.length) r['Dependencies'] = r['Dependencies'] || {};
-        dependenciesWithoutFramework.forEach(k => {
+        dependenciesWithoutFramework.forEach((k: any) => {
             r['Dependencies'][k.$.id] = versionParser.parse(k.$.version)
         })
 
@@ -77,16 +77,54 @@ function createNuGetAsText(nugetSpec: any): any {
     return r;
 }
 
-export function getTextForNuPkgContents(filePath): Promise<string> {
+// smart-nupkg-metadata-reader only invokes its callback if it finds a zip
+// entry ending in ".nuspec"; otherwise its internal xml2js parser's "end"
+// event never fires and the callback silently never runs, hanging the
+// caller forever. Check upfront so a malformed/atypical package rejects
+// instead of leaving resolveCustomEditor's Promise.all pending indefinitely.
+function ensureNuspecEntry(filePath: string): void {
+    const AdmZip = require('adm-zip');
+    const zip = new AdmZip(filePath);
+    const hasNuspec = zip.getEntries().some((e: any) => e.entryName.endsWith('.nuspec'));
+    if (!hasNuspec) {
+        throw new Error('No .nuspec file found inside the package.');
+    }
+}
+
+export function getTextForNuPkgContents(filePath: string): Promise<string> {
     return new Promise<string>((resolve, reject) => {
         var nupkgReader = require('smart-nupkg-metadata-reader');
         var yaml = require('js-yaml');
-        nupkgReader.readMetadata(filePath, function (result, error) {
+        try {
+            ensureNuspecEntry(filePath);
+        } catch (err) {
+            return reject(err);
+        }
+        nupkgReader.readMetadata(filePath, function (result: any, error: any) {
             if (error) {
-                return reject();
+                return reject(error);
             }
-            let yamlString = yaml.safeDump(createNuGetAsText(result));
+            let yamlString = yaml.dump(createNuGetAsText(result));
             return resolve(yamlString);
+        });
+    });
+}
+
+// Returns the reshaped metadata object (the same structure createNuGetAsText
+// produces) so the webview preview can render it as HTML instead of YAML.
+export function getNuPkgMetadata(filePath: string): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+        var nupkgReader = require('smart-nupkg-metadata-reader');
+        try {
+            ensureNuspecEntry(filePath);
+        } catch (err) {
+            return reject(err);
+        }
+        nupkgReader.readMetadata(filePath, function (result: any, error: any) {
+            if (error) {
+                return reject(error || new Error('Unable to read .nuspec metadata.'));
+            }
+            return resolve(createNuGetAsText(result));
         });
     });
 }

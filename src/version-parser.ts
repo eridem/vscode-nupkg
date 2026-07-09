@@ -4,7 +4,6 @@ function createVersion(symbol: string, number: string): string {
 }
 
 export function parse (version: string): string {
-    console.log('Version to parse: ', version)
     if (!version) return ''
 
     if (version.startsWith('(') || version.startsWith('[')) {
@@ -22,5 +21,3 @@ export function parse (version: string): string {
         return createVersion('>=', version)
     }
 }
-
-module.exports = { parse }

@@ -1,25 +1,37 @@
 import * as vscode from 'vscode';
+import * as os from 'os';
+import * as fs from 'fs';
+import { basename, join } from 'path';
 import * as zipUtils from './zip-utils';
 import * as nupkgUtils from './nupkg-utils';
-
-const { basename, join } = require('path');
-const shell = require('shelljs');
+import { NupkgPreviewProvider } from './preview-provider';
 
 export function activate(context: vscode.ExtensionContext) {
-    function createFileAndShowIt(fileUri, text) {
-        let newFilePath = join(shell.tempdir(), basename(fileUri._fsPath) + '.yml');
-        shell.echo(text).to(newFilePath)
+    context.subscriptions.push(
+        vscode.window.registerCustomEditorProvider(
+            NupkgPreviewProvider.viewType,
+            new NupkgPreviewProvider(context),
+            {
+                webviewOptions: { retainContextWhenHidden: true },
+                supportsMultipleEditorsPerDocument: false,
+            },
+        ),
+    );
+
+    function createFileAndShowIt(fileUri: vscode.Uri, text: string) {
+        let newFilePath = join(os.tmpdir(), basename(fileUri.fsPath) + '.yml');
+        fs.writeFileSync(newFilePath, text);
 
         vscode.workspace.openTextDocument(newFilePath).then(doc => {
             vscode.window.showTextDocument(doc, vscode.ViewColumn.One);
         });
     }
 
-    let disposable = vscode.commands.registerCommand('extension.preview', (fileUri) => {
+    let disposable = vscode.commands.registerCommand('extension.preview', (fileUri: vscode.Uri) => {
         if (!fileUri) return vscode.window.showInformationMessage('Use the context menu over the *.nupkg file or the editor button to obtain the preview.');
         Promise.all([
-            nupkgUtils.getTextForNuPkgContents(fileUri._fsPath),
-            zipUtils.getTextForZipContents(fileUri._fsPath)
+            nupkgUtils.getTextForNuPkgContents(fileUri.fsPath),
+            zipUtils.getTextForZipContents(fileUri.fsPath)
         ]).then((texts) => {
             let text = '';
             texts.forEach((t) => text += t + '\n');
