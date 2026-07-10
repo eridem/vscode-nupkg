@@ -1,4 +1,4 @@
-### Unreleased
+### 2.0.1
 
 - Breaking: raise minimum VS Code version to 1.85.0.
 - Feature: `.nupkg` files now open in a built-in custom editor with a rendered Preview and legacy YAML view, instead of dumping a temporary `.yml` file. The old `extension.preview` command is kept as a fallback.
