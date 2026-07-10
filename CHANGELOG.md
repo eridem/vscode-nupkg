@@ -1,3 +1,5 @@
+### Unreleased
+
 ### 2.0.0
 
 - Breaking: raise minimum VS Code version to 1.85.0.
