@@ -21,7 +21,7 @@
   "homepage": "https://eridem.com/vscode-extensions/vscode-nupkg",
   "icon": "images/icon.png",
   "engines": {
-    "vscode": "^1.85.0"
+    "vscode": "^1.125.0"
   },
   "categories": [
     "Other"
