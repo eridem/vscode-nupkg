@@ -134,7 +134,7 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "adm-zip": "^0.5.18",
+    "adm-zip": "^0.6.0",
     "js-yaml": "^5.2.1",
     "smart-nupkg-metadata-reader": "^1.0.0"
   }
