@@ -135,7 +135,7 @@
   },
   "dependencies": {
     "adm-zip": "^0.5.18",
-    "js-yaml": "^5.2.1",
+    "js-yaml": "^5.2.2",
     "smart-nupkg-metadata-reader": "^1.0.0"
   }
 }
