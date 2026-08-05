@@ -1,4 +1,4 @@
-### Unreleased
+### 2.0.2
 
 - Improvement: update dependencies - adm-zip to 0.6.0, js-yaml to 5.2.3, and transitive dependencies undici and fast-uri to latest versions.
 
