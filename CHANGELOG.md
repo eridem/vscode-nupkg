@@ -1,3 +1,7 @@
+### 2.0.2
+
+- Improvement: update dependencies - adm-zip to 0.6.0, js-yaml to 5.2.3, and transitive dependencies undici and fast-uri to latest versions.
+
 ### 2.0.1
 
 - Breaking: raise minimum VS Code version to 1.85.0.
